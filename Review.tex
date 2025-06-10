@@ -1,0 +1,226 @@
+\documentclass[UTF8]{article}
+
+\usepackage{amsmath}%数学公式宏包
+\usepackage{amssymb}%数学符号宏包
+\usepackage{amsthm}%定理证明环境宏包
+\usepackage{epstopdf}%eps转pdf宏包
+\usepackage{fancyhdr}%页眉页脚宏包
+\usepackage{gensymb}%包含\celsius,\degree,\micro,\ohm,\perthousand等命令
+\usepackage{geometry}%页面设置宏包
+\usepackage{graphicx}%插入图片宏包
+\usepackage{pgfplots}%绘制图像宏包
+\usepackage{relsize}
+\usepackage{setspace}%设置间距宏包
+\usepackage{subfigure}%子图排列宏包
+\usepackage{tikz}%绘制图像宏包
+\usepackage[colorlinks,linkcolor=blue]{hyperref}%超链接宏包
+\usepackage[heading]{ctex}
+
+%选择题分行命令
+\newcommand{\onech}[4]{\indent\makebox[92pt][l]{\qquad A. #1} \hfill\makebox[92pt][l]{B. #2} \hfill \makebox[92pt][l]{C. #3} \hfill \makebox[92pt][l]{D. #4}\\}
+\newcommand{\twoch}[4]{	\indent\makebox[110pt][l]{\qquad A. #1} \hfill\makebox[220pt][l]{B. #2}\\\indent\makebox[110pt][l]{\qquad C. #3} \hfill\makebox[220pt][l]{D. #4}\\}
+\newcommand{\fourch}[4]{\indent\makebox[262pt][l]{\qquad A. #1}\\\indent\makebox[262pt][l]{\qquad B. #2}\\\indent\makebox[262pt][l]{\qquad C. #3}\\\indent\makebox[262pt][l]{\qquad D. #4}\\}
+%罗马数字命令
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+%页面设置
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+%首行缩进设置
+\setlength{\parindent}{0em}
+%行距设置
+\setlength{\baselineskip}{20pt}
+\linespread{1.75}
+%页眉页脚设置 
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\textbf{\rightmark} \qquad \thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%定理证明环境设置
+\newtheorem*{theorem}{Thm}
+\newtheorem*{corollary}{Cor}
+\newtheorem*{lemma}{Lem}
+\newtheorem*{definition}{Def}
+\newtheorem*{proposition}{Prop}
+\newtheorem*{remark}{Rem}
+\newtheorem{example}{Example}
+\newtheorem{solution}{Solution}
+\newtheorem{num}{}
+
+\begin{document}
+    \begin{center}
+    \Huge \textbf{实变函数复习题}\par
+    \end{center}
+    1. 若$E$有界, 则$m^{*}(E)<\infty$.\par
+    \begin{remark}
+        有界, 于是存在有限开覆盖, 于是测度小于$\infty$.\par
+    \end{remark}
+    2. 可数点集的外测度为零.\par
+    \begin{remark}
+        单点集的外测度为0, 可数并的外测度为可数个单点集的外测度之和, 于是可数点集的外测度为0.\par
+    \end{remark}
+    3. 设$E$为可测集, $f(x)$为定义在$E$上的实函数, 则以下几条等价:\par
+    \begin{enumerate}
+        \item $E\left[f>a\right]$可测， $\forall a\in\mathbb{R}$;
+        \item $E\left[f\leqslant a\right]$可测, $\forall a\in\mathbb{R}$;
+        \item $E\left[f\geqslant a\right]$可测, $\forall a\in\mathbb{R}$;
+        \item $E\left[f<a\right]$可测, $\forall a\in\mathbb{R}$.
+    \end{enumerate}
+    \begin{remark}
+        (1), (3)和(2), (4)为余集, 可测性自然. (3)可表示为可列个(1)的并.\par
+    \end{remark}
+    4. 设$A$, $B$均为可测集, 则$m(A\cup B)+ m(A\cap B)=m(A)+m(B)$.\par
+    \begin{remark}
+        若$A$, $B$任一集合测度为$\infty$, 自然成立.\par
+        否则, 由可测集可加性可得.\par    
+    \end{remark}
+    5. 设$E_n$为可测集列, 且$\sum_{n=1}^{\infty}m(E_n)<+\infty$, 则$m(\limsup E_n)=0$.\par
+    \begin{remark}
+        由$m\left(\bigcup_{n=1}^{\infty}E_n\right)\leqslant \sum_{n=1}^{\infty}m(E_n)$和$\limsup E_n\subset \bigcup_{n=1}^{\infty}E_k$.
+    \end{remark}
+    6. 设$E_n$为可测集列, 则$m\left(\liminf E_n\right)\leqslant \liminf (m(E_n))$.\par
+    \begin{remark}
+        $\bigcap_{i=1}^{\infty} (E_i)$关于$n$单增, 由单调性和测度的下连续性可得.\par
+    \end{remark}
+    7. 设$E_n$为可测集列, $\exists k_0$, 使$m\left(\bigcup_{n=k_0}^{\infty}E_n\right)<\infty$ 则$m\left(\limsup E_n\right)\leqslant \limsup (m(E_n))$.\par
+    \begin{remark}
+        $\bigcup_{i=1}^{\infty} (E_i)$关于$n$单减, 由单调性和测度的上连续性可得.\par
+    \end{remark}
+    8. 零测集的闭包不一定是零测集.\par
+    \begin{remark}
+        例如$\mathbb{Q}$的闭包为$\mathbb{R}$, $\mathbb{R}$的测度为$\infty$.\par
+    \end{remark}
+    9. 闭的零测集$E$必是疏朗集.\par
+    \begin{remark}
+        反证，若不疏朗, 则存在小邻域, 此时测度大于0.\par
+    \end{remark}
+    10. Lebesgue可测集族的势为$2^{\aleph_0}$.\par
+    \begin{remark}
+        $\mathbb{R}$的势为$2^{\aleph_0}$, 而Lebesgue可测集族包含所有开集, 所以势至少为$2^{\aleph_0}$. 另一方面, Lebesgue可测集族是$\sigma$-代数, 所以势不超过$2^{\aleph_0}$.\par
+    \end{remark}
+    11. $E$可测的充要条件是: 对$\forall \varepsilon >0$, 存在开集$G\supset E$和闭集$F\subset E$, 使得$m(G\backslash F) < \varepsilon$.
+    \begin{remark}
+        必要性显然, 充分性考虑取$\varepsilon = \frac{1}{n}$, 则存在开集$G_n\supset E$和闭集$F_n\subset E$, 使得$m(G_n\backslash F_n) < \frac{1}{n}$. 由可测集的定义, $E$可测.\par
+    \end{remark}
+    12. 以下命题等价:\par
+        (i) $E$可测;\par
+        (ii) 存在$G_{\delta}$集$H\supset E$, 使得$m^{*}(H\backslash E)=0$;\par
+        (iii) 存在$F_{\sigma}$集$K\subset E$, 使得$m^{*}(E\backslash K)=0$;\par
+        (iv) 存在$G_{\delta}$集$H$和$F_{\sigma}$集$K$, 使得$K\subset E\subset H$且$m(H\backslash K)=0$.\par
+    \begin{remark}
+        (i) $\Rightarrow$ (ii): 由可测集的定义, 存在开集$G\supset E$, 使得$m(G\backslash E)=0$. 由于开集是$G_{\delta}$集, 所以存在$G_{\delta}$集$H\supset E$, 使得$m^{*}(H\backslash E)=0$.\par
+        (ii) $\Rightarrow$ (iii): 由$G_{\delta}$集的性质, $H$可以表示为可数个开集的交, 所以存在闭集$F\subset H$, 使得$m^{*}(H\backslash F)=0$. 因此, $F$是一个$F_{\sigma}$集, 且满足$m^{*}(E\backslash F)=0$.\par
+        (iii) $\Rightarrow$ (iv): 显然成立.\par
+        (iv) $\Rightarrow$ (i): 由可测集的定义, $K\subset E\subset H$, 所以$m(H\backslash K)=0$, 因此$E$可测.\par
+    \end{remark}
+    13. 在二维平面上作一开集$G$, 使其边界的测度大于零.\par
+    \begin{remark}
+        类Cantor集记为$E$, 则$G=\mathbb{R}^2\backslash \left([0,1]\times E\right)$是一个开集, 且边界的测度大于零.\par
+    \end{remark}
+    14. 在平面上造一个不可测集.\par
+    \begin{remark}
+        利用一维空间上的不可测集.\par
+    \end{remark}
+    15. $\mathbb{R}$中外测度大于零的点集中均含有不可测的子集.\par
+    \begin{remark}
+        外测度大于0的集合总可以构造不可测集.\par
+    \end{remark}
+    16. 零测集的余集必是稠密集.\par
+    \begin{remark}
+        反证, 若不是, 则存在开集$G$使得$G\cap E=\emptyset$, 于是$m(G)=0$, 这与$G$为开集矛盾.\par
+    \end{remark}
+
+    17. 证明简单函数的和、差、积、商仍为简单函数.\par
+    \begin{remark}
+        设$f=\sum_{i=1}^{n}a_i\chi_{E_i}$, $g=\sum_{j=1}^{m}b_j\chi_{F_j}$为两个简单函数, 则它们的和、差、积、商可以表示为:
+        \begin{itemize}
+            \item 和: $f+g=\sum_{i=1}^{n}\sum_{j=1}^{m}(a_i+b_j)\chi_{E_i\cap F_j}$;
+            \item 差: $f-g=\sum_{i=1}^{n}\sum_{j=1}^{m}(a_i-b_j)\chi_{E_i\cap F_j}$;
+            \item 积: $fg=\sum_{i=1}^{n}\sum_{j=1}^{m}(a_ib_j)\chi_{E_i\cap F_j}$;
+            \item 商: $f/g=\sum_{i=1}^{n}\sum_{j=1}^{m}(a_i/b_j)\chi_{E_i\cap F_j}$ (当$b_j\neq 0$).
+        \end{itemize}
+        由于有限个简单函数的线性组合仍是简单函数, 所以和、差、积、商均为简单函数.\par
+    \end{remark}
+    18. 函数 $\left.f(x)\right|_{E}$在孤立点 $x_0\in E$处连续.\par
+    \begin{remark}
+        设$E$为可测集, $f(x)$为定义在$E$上的实函数, $x_0\in E$为孤立点. 则存在$\delta>0$, 使得$B(x_0,\delta)\cap E=\{x_0\}$. 因此, 对任意$\varepsilon>0$, 存在$\delta>0$, 使得当$x\in B(x_0,\delta)\cap E$时, $|f(x)-f(x_0)|<\varepsilon$. 所以 $\left.f(x)\right|_{E}$在 $x_0$处连续.\par
+    \end{remark}
+    19. 可测集$E\subset \mathbb{R}$上的单调函数$f(x)$是$E$上的可测函数.\par
+    \begin{remark}
+        $E\left[f>a\right]$总是可测的, 取$E_0$表示$f$的间断点, 则$m\left(E_0\left[f>a\right]\right)=0$, 另一方面, $E\backslash E_0\left[f>a\right]$连续, 因而可测, 所以$E\left[f>a\right]$可测.\par
+    \end{remark}
+    20. 设$f$为可测集$E$上的广义实函数. 若对几乎所有的 $a\in \mathbb{R}$, 集合$E\left[f>a\right]$均可测, 则$f$在$E$上可测.\par
+    \begin{remark}
+        任取$a\in mathbb{R}$, 则$\exists a_n \rightarrow a$, $E\left[f>a_n\right]$可测. 于是$E\left[f>a\right] = \bigcup_{n=1}^{\infty}E\left[f>a_n\right]$.\par
+    \end{remark}
+    21. 设$m(E)<\infty$, $f$是$E$上几乎处处有限的可测函数. 证明：对$\forall \varepsilon >0$, 存在闭集$F\subset E$，使得 $m(E\backslash F)<\varepsilon$，且$f$在$F$上有界.\par
+    \begin{remark}
+        构造$E\left[|f|>n\right]$, 则$\lim_{n \to \infty}m(E_n)=0$, 于是$\exists N>0, m(E\left[|f|>N\right])<\varepsilon$, 取闭集$F\subset E\backslash E_N$满足$m\left(\left(E\backslash E_N\right)\backslash F\right)< \frac{\varepsilon}{2}$, 则$m(E\backslash F)<\varepsilon$, 且$f$在$F$上有界.\par
+    \end{remark}
+    22. 设$f$和 $f_n$均是可测集$E$上几乎处处有限的可测函数. 证明: $E\left[f_n\rightarrow f\right]$和$E\backslash E\left[f_n\rightarrow f\right]$均可测.\par
+    \begin{remark}
+        取$E_n$使$f$和$f_n$均不有限, 则$m(\bigcup_{n=1}^{\infty}E_n)=0$. 只需证$E\backslash \left(\bigcup_{n=1}^{\infty}E_n\right)\left[f_n\rightarrow f\right]$可测.\par
+    \end{remark}
+    23. 设$f$, $g$均是$E$上的可测函数. 证明: 集合$E\left[f>g\right]$是可测集.\par
+    \begin{remark}
+        取有理数集$r_i$, 则$E\left[f>g\right]=\bigcup_{i=1}^{\infty}E\left[f>r_i\right]\cap E\left[g<r_i\right]$. 由于$E\left[f>r_i\right]$和$E\left[g<r_i\right]$均可测, 所以它们的交集也是可测的.\par
+    \end{remark}
+    24. 构造反例说明：由$|f|$可测得不到$f$可测.\par
+    \begin{remark}
+        取$E$的不可测子集$A$, 则$f=\chi_{A}-\chi{E\backslash A}$在$E$上不是可测函数.\par
+    \end{remark}
+    25. 设在 $\mathbb{R}^p$中, $f(x)$是$E_1$上的可测函数; 在$\mathbb{R}^q$中, $g(y)$是$E_2$上的可测函数. 证明: 在$\mathbb{R}^{p+q}$中, $f(x)g(y)$是$E=E_1\times E_2$上的可测函数.\par
+    \begin{remark}
+        取$E\left[f(x)g(y)>a\right]$, 则$E\left[f(x)>a/b\right]\cap E\left[g(y)>b\right]$可测, 所以$E\left[f(x)g(y)>a\right]$可测.\par
+    \end{remark}
+    26. 设在可测集$E$上, 有 $f_n \Rightarrow f$; 在$E$上对任意的$n$都几乎处处成立$|f_n(x)|\leqslant K$. 证明: 在$E$上几乎处处成立$|f(x)|\leqslant K$.\par
+    \begin{remark}
+        由 Riesz定理存在子列$f_{n_k}$几乎处处收敛到$f$, 由极限保序性, 可得$|f(x)|\leqslant K$.\par
+    \end{remark}
+    27. 设$E\subset \mathbb{R}^n$是闭集,  $f(x)$在$E$上连续, 证明对任意的$a\in \mathbb{R}$,$E\left[f\geqslant a\right]$是闭集.\par
+    \begin{remark}
+        由连续性, 对任意的$a\in \mathbb{R}$, $E\left[f\geqslant a\right]$可以表示为$E\cap f^{-1}([a,\infty))$, 其中$f^{-1}([a,\infty))$是闭集, 所以$E\left[f\geqslant a\right]$是闭集.\par
+    \end{remark}
+    28. Lusin 定理中的$\varepsilon$不能换成0.\par
+    \begin{remark}
+        取$(0,1)$上的Dirichlet函数, 若存在$F$是$(0,1)$上的闭集, 使得$m((0,1)\backslash F)=0$, 则$(0,1)\backslash F$是零测集, $F=(0,1)$, 但Dirichlet函数在$(0,1)$上处处不连续, 所以不存在这样的闭集$F$.\par
+    \end{remark}
+    29. 求[0,1]上Dirichlet函数$D(x)$, Riemann函数$R(x)$的积分.\par
+    \begin{remark}
+        均为0.\par
+    \end{remark}
+    30. 设$m(E)<\infty$, $f(x)$在$E$上非负可测, 证明: $f(x)$在$E$上可积$\Leftrightarrow $ $\sum_{k=0}^{\infty}2^{k}m(F_k)$, 其中$F_k=E\left[f\geqslant 2^{k}\right]$.\par
+    \begin{remark}
+        
+    \end{remark}
+    31. 设$m(E)<\infty$, $E_1, E_2, \cdots, E_n$是$E$的$n$个可测子集, 正整数$k\leqslant n$. 证明：若$E$中每一点至少属于$k$个$E_i$, 则存在某个$i$, 使得$m(E_i)\geqslant \frac{k}{n}m(E)$.\par
+    \begin{remark}
+        设$E_i$的测度为$m(E_i)$, 则每个点至少属于$k$个$E_i$, 所以$\sum_{i=1}^{n}m(E_i)\geqslant km(E)$. 由于$\sum_{i=1}^{n}m(E_i)=m(E)$, 所以存在某个$i$, 使得$m(E_i)\geqslant \frac{k}{n}m(E)$.\par
+    \end{remark}
+    32. $f$是Lebesgue可积的$\Rightarrow$ $|f|$也是Lebesgue可积的. 反之, 不对.\par
+    \begin{remark}
+        取$E$的一不可测集$A$, 做$f=\chi_{A}-\chi_{E\backslash A}$. 则$|f|$是Lebesgue可积的, 但$f$不是Lebesgue可积的.\par
+    \end{remark}
+    33. 证明: 1. $\frac{\sin x}{x}$在$(0,\infty)$上不是勒贝格可积的.\par 
+    2. $\frac{1}{x}$在$(0,1)$上不是勒贝格可积的.\par
+    \begin{remark}
+        1. 绝对值不是黎曼可积的. 2. 反证可得
+    \end{remark}
+    34. 设$m(E)<\infty$, $f_n(x)\subset L(E)$, 且在$E$上$f_n(x)$一致收敛到$f(x)$. 证明: $f(x)\in L(E)$, 且$\int_{E}f(x)dx=\lim_{n \to \infty}\int_{E}f_n(x)dx$.\par
+    \begin{remark}
+        由一致收敛性, 对任意的$\varepsilon>0$, 存在$N$, 使得当$n\geqslant N$时, $|f_n(x)-f(x)|<\varepsilon$对所有$x\in E$成立. 由于$f_n(x)$在$E$上可积, 所以$\int_{E}|f_n(x)|dx<\infty$. 于是$\int_{E}|f(x)|dx\leqslant \int_{E}|f_n(x)|dx+\varepsilon m(E)<\infty$, 所以$f(x)\in L(E)$. 由一致收敛性, $\int_{E}f_n(x)dx\to \int_{E}f(x)dx$.\par
+    \end{remark}
+    35. 设$m(E)<\infty$, 证明: 在$E$上$f_n(x)\Rightarrow 0$的充要条件是$\lim_{n \to \infty}\int_{E}\frac{|f_n(x)|}{1+|f_n(x)|}dx=0$.\par
+    \begin{remark}
+        
+    \end{remark}
+    36. 设$f(x)$是可测集$E$上的可积函数, 令$e_n=E\left[f\geqslant n\right]$. 证明: $\lim_{n \to infty}n\cdot m(e_n) =0$.\par
+    \begin{remark}
+        由$f(x)$的可积性, $\int_{E}|f(x)|dx<\infty$, 所以$\lim_{n \to \infty}n\cdot m(E\left[f\geqslant n\right])=0$. 由于$E\left[f\geqslant n\right]$是可测集, 所以$m(E\left[f\geqslant n\right])$是有限的, 因此结论成立.\par
+    \end{remark}
+\end{document}
