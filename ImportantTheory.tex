@@ -1,0 +1,154 @@
+\documentclass[UTF8]{article}
+
+\usepackage{amsmath}%数学公式宏包
+\usepackage{amssymb}%数学符号宏包
+\usepackage{amsthm}%定理证明环境宏包
+\usepackage{epstopdf}%eps转pdf宏包
+\usepackage{fancyhdr}%页眉页脚宏包
+\usepackage{gensymb}%包含\celsius,\degree,\micro,\ohm,\perthousand等命令
+\usepackage{geometry}%页面设置宏包
+\usepackage{graphicx}%插入图片宏包
+\usepackage{pgfplots}%绘制图像宏包
+\usepackage{relsize}
+\usepackage{setspace}%设置间距宏包
+\usepackage{subfigure}%子图排列宏包
+\usepackage{tikz}%绘制图像宏包
+\usepackage[colorlinks,linkcolor=blue]{hyperref}%超链接宏包
+\usepackage[heading]{ctex}
+
+%选择题分行命令
+\newcommand{\onech}[4]{\indent\makebox[92pt][l]{\qquad A. #1} \hfill\makebox[92pt][l]{B. #2} \hfill \makebox[92pt][l]{C. #3} \hfill \makebox[92pt][l]{D. #4}\\}
+\newcommand{\twoch}[4]{	\indent\makebox[110pt][l]{\qquad A. #1} \hfill\makebox[220pt][l]{B. #2}\\\indent\makebox[110pt][l]{\qquad C. #3} \hfill\makebox[220pt][l]{D. #4}\\}
+\newcommand{\fourch}[4]{\indent\makebox[262pt][l]{\qquad A. #1}\\\indent\makebox[262pt][l]{\qquad B. #2}\\\indent\makebox[262pt][l]{\qquad C. #3}\\\indent\makebox[262pt][l]{\qquad D. #4}\\}
+%罗马数字命令
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+%页面设置
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+%首行缩进设置
+\setlength{\parindent}{0em}
+%行距设置
+\setlength{\baselineskip}{20pt}
+\linespread{1.75}
+%页眉页脚设置 
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\textbf{\rightmark} \qquad \thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%定理证明环境设置
+\newtheorem*{theorem}{Thm}
+\newtheorem*{corollary}{Cor}
+\newtheorem*{lemma}{Lem}
+\newtheorem*{definition}{Def}
+\newtheorem*{proposition}{Prop}
+\newtheorem*{remark}{Rem}
+\newtheorem{example}{Example}
+\newtheorem{solution}{Sol}
+\newtheorem{num}{}
+
+\begin{document}
+    1.开集和闭集的定义及其等价定义. \par
+    \begin{solution}
+        若$E$满足$E\cap \partial E=\varPhi $, 则称$E$为开集.\par
+        若$E$满足$\partial E\subset E$, 则称$E$为闭集.\par
+        类似可以得到许多等价定义.\par
+    \end{solution}
+    2. 讨论开区间、开集和Borel集的关系.\par
+    \begin{solution}
+        开集一定是Borel集, 但Borel集不一定是开集.\par
+        开区间是开集, 但开集不一定是开区间. 且开集可以表示为可列个开区间的并.\par
+    \end{solution}
+    3. 稠密集和疏朗集的定义.\par
+    \begin{solution}
+        若$B$满足$\forall x\in B, \exists y\in A$使得$y$在$x$的任意邻域内, 则称$A$在$B$中稠密.\par
+        不在任何集合中稠密的集合是疏朗的.\par
+    \end{solution}
+    4. Cantor集的性质.\par
+    \begin{solution}
+        Cantor集是一个闭集, 其补集是开集.\par
+        Cantor集的势为$c$, 测度为0.\par
+        Cantor集是疏朗集, 也是非空完备集.\par
+    \end{solution}
+    5. 外测度和可测集的定义及其性质.\par
+    \begin{solution}
+        给定一个集合$E$, 其外测度表示为$m^{*}(E)=\inf \left\{\sum_{i=1}^{\infty}|I_i|: \bigcup_{i=1}^{\infty}I_i\supset E\right\} $.\par
+        若$\forall T\subset \mathbb{R}^n, m^{*}(T)=m^{*}(E\cap T)+m^{*}(E^c\cap T)$, 则称$T$为可测集.\par
+        外测度满足以下性质:\par
+        单调性: 若$A\subset B$, 则$m^{*}(A)\leq m^{*}(B)$.\par
+        次可加性: $m^{*}(\bigcup_{i=1}^{\infty}A_i)\leqslant \sum_{n=1}^{\infty}m^{*}(A_n)$.\par
+        平移不变性: $\forall x\in \mathbb{R}^n$, 有$m^{*}(E+x)=m^{*}(E)$.\par
+        分离可加性: 若$\rho(A,B)>0$, 则$m^{*}(A\cup B)=m^{*}(A)+m^{*}(B)$.\par
+        可测集满足以下性质:\par
+        运算封闭性: 若$A,B$为可测集, 则$A\cup B, A\cap B, A\backslash B$等有限次运算后均为可测集.\par
+        等价定义: 若$E$为可测集, 则$\exists F\subset E$为闭集, 使得$m(E\backslash F)<\varepsilon$; 若$E$为可测集, 则$\exists G\supset E$为闭集, 使得$m(G\backslash E)<\varepsilon$.\par 
+    \end{solution}
+    6. 零测集和可列集的定义, 并相应说明体现了集合的何种性质.\par
+    \begin{solution}
+        零测集是指其外测度为0的集合, 即$m^{*}(E)=0$.\par
+        可列集是指可以表示为$\{x_1, x_2, \cdots\}$的集合.\par
+        可列集一定是零测集, 但反之不一定成立, 例如Cantor集是一个零测集, 但不是可列集.\par
+        零测集反映了集合的测度很小, 而可列集则反映了集合的势是可数的, 也即离散的.\par
+    \end{solution}
+    7. 开集、闭集、Borel集和可测集之间的关系.\par
+    \begin{solution}
+        开集和闭集都是Borel集, 也都是可测集.\par
+        Borel集是由开集和闭集通过可数次并、交、补运算得到的集合. Borel集一定是可测集.\par
+        但可测集不一定都是Borel集, 如Cantor集.\par
+    \end{solution}
+    8. 可测函数的定义和等价定义.\par
+    \begin{solution}
+        若定义在可测集$E$上的$f$满足$\forall a\in \mathbb{R}, E[f>a]$是可测集, 则称$f$为可测函数.\par
+        等价定义包括:\par
+        若定义在可测集$E$上的$f$满足$\forall a\in \mathbb{R}, E[f\leqslant a]$是可测集, 则称$f$为可测函数.\par
+        若定义在可测集$E$上的$f$满足$\forall a\in \mathbb{R}, E[f< a]$是可测集, 则称$f$为可测函数.\par
+        若定义在可测集$E$上的$f$满足$\forall a\in \mathbb{R}, E[f\geqslant a]$是可测集, 则称$f$为可测函数.\par
+        若定义在可测集$E$上的$f$满足$\forall a\in \mathbb{R}, E[f= a]$是可测集, 则称$f$为可测函数.\par
+    \end{solution}
+    9. 可测函数各种收敛的定义和上面各种收敛之间的关系.\par
+    \begin{solution}
+        逐点收敛: $\forall x\in E, \lim_{n \to \infty}f_n(x)=f(x)$.\par
+        一致收敛: $\forall \varepsilon>0, \exists N\in \mathbb{N}, \forall n\geqslant N, |f_n(x)-f(x)|<\varepsilon$.\par
+        几乎处处收敛: $\exists E_0\subset E, m(E_0) = 0, \forall x\in E\backslash E_0, \lim_{n \to \infty}f_n(x)=f(x)$.\par
+        近乎一致收敛: $\forall \varepsilon>0, \forall \delta > 0, \exists E_0\subset E, m(E_0) < \delta, \exists N\in \mathbb{N}, \forall n\geqslant N, \forall x\in E\backslash E_0, |f_n(x)-f(x)|<\varepsilon$.\par
+        依测度收敛: $\forall k >0, \lim_{n \to \infty}m(E[|f_n-f|\geqslant \frac{1}{k}])=0$.\par
+        几种收敛的关系可以由下面定理给出:\par
+        若$f_n$在$E$上近乎一致收敛到$f$, 则$f_n$在$E$上几乎处处收敛到$f$.\par
+        (Egoroff) 若$m(E)<\infty$, $f_n$在$E$上几乎处处收敛到$f$, 则$f_n$在$E$上近乎一致到$f$.\par
+        (Lebesgue) 若$m(E)<\infty$, $f_n$在$E$上几乎处处收敛到$f$, 则$f_n$在$E$上依测度收敛到$f$.\par
+        (Riesz) 若$m(E)<\infty$, $f_n$在$E$上依测度收敛到$f$, 则$\exists f_{n_k}$在$E$上几乎处处收敛到$f$.\par
+    \end{solution}
+    10. 连续函数的定义和等价定义.\par
+    \begin{solution}
+        若$f$在点$x_0$处连续, 则$\forall \varepsilon > 0, \exists \delta > 0$, 使得$\forall x\in E, \rho(x,x_0)<\delta, |f(x)-f(x_0)|<\varepsilon$.\par
+        在$E$上, 若$f$在每个点$x_0\in E$处连续, 则称$f$在$E$上连续.\par
+        连续函数的等价定义为, 开集的原像是开集，闭集的原像是闭集.\par
+    \end{solution}
+    11. Lusin定理.\par
+    \begin{solution}
+        (Lusin I) 设$f$是定义在可测集$E$上的可测函数, 则$\forall \delta >0, \exists F\subset E$为闭集, 使得$m(E\backslash F)<\delta$且$f|_F$是连续函数.\par
+        (Lusin II) 设$f$是定义在可测集$E$上的可测函数, 则$\forall \delta >0, \exists F\subset E$为闭集, $\exists g\in C(\mathbb{R}^n)$使得$m(E\backslash F)<\delta$且$f|_F=g|_F$.\par
+    \end{solution}
+    12. Levi、Fatou、Lebesgue 逐项可积定理.\par
+    \begin{solution}
+        (Levi) 设单增函数列$f_n$在$E$上可测, $f_n(x)\geqslant 0$ a.e. on $E$, 且$f_n\rightarrow f$, 则$\lim_{n \to \infty}\int_E f_n(x) \mathrm{d}x = \int_E f(x) \mathrm{d}x$.\par
+        (Fatou) 设函数列$f_n$在$E$上可测, $f_n(x)\geqslant 0$ a.e. on $E$,  则$\int_E \left(\liminf_{n\to \infty}f_n(x)\right) \mathrm{d}x \leqslant \liminf_{n\to \infty}\int_E f_n(x) \mathrm{d}x$.\par
+        (Lebesgue) 设函数列$f_n$在$E$上可测, $f_n(x)\geqslant 0$ a.e. on $E$, 则$\int_E \left(\sum_{n=1}^{\infty}f_n(x)\right) \mathrm{d}x = \sum_{n=1}^{\infty}\int_E f_n(x) \mathrm{d}x$.\par
+    \end{solution}
+    13. Lebesgue 控制收敛定理.\par
+    \begin{solution}
+        设在可测集$E$上定义的可测函数列$f_n$有$f_n\Rightarrow f$, 且存在可测函数$g$使得$\forall n\in \mathbb{N}, |f_n(x)|\leqslant g(x)$ a.e. on $E$, 且$\int_E g(x) \mathrm{d}x < \infty$, 则$\lim_{n \to \infty}\int_E f_n(x) \mathrm{d}x = \int_E f(x) \mathrm{d}x$.\par
+    \end{solution}
+    14. $[a,b]$上有界函数的可积性判定定理.\par
+    \begin{solution}
+        设$f$在$[a,b]$上有界, 且$\forall \varepsilon > 0, \exists \delta > 0$, 使得$\forall P\in \mathcal{P}([a,b]), \rho(P)<\delta$, 则$f$在$[a,b]$上可积.\par
+        反之, 若$f$在$[a,b]$上可积, 则$f$在$[a,b]$上有界.\par
+    \end{solution}
+    
+
+\end{document}
